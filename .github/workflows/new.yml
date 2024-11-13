@@ -39,8 +39,8 @@ jobs:
       # Kører API-testene i Postman CLI
       - name: Run API tests
         run: |
-          postman collection run "${{ github.workspace }}/postman/collections/Modul 8 Agil MockServer.json" --env-var baseUrl="http://localhost:8080"
-
+          postman collection run "${{ github.workspace }}/postman/collections/SalesCollection.json"
+          
       # Stopper og rydder op efter Docker-containeren
       - name: Stop and remove Docker container
         run: |
