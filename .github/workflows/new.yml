@@ -8,35 +8,14 @@ on:
 
 jobs:
   automated-api-tests:
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
-      # Tjekker kildekoden ud fra repository
       - uses: actions/checkout@v4
-
-      # Sundhedstjek for applikationen
-      - name: Health check for application
-        run: |
-          echo "Waiting for the application to start..."
-          for i in {1..10}; do
-            if curl -s http://localhost:8080/customers; then
-              echo "Application is reachable."
-              break
-            fi
-            echo "Application is not reachable yet. Retrying..."
-            sleep 3
-          done
-
-      # Installerer Postman CLI
       - name: Install Postman CLI
         run: |
-          curl -L https://dl-cli.pstmn.io/install/linux64.sh | sh
-
-      # Logger ind i Postman CLI
+          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-
-      # Kører API-testene i Postman CLI
       - name: Run API tests
         run: |
           postman collection run "${{ github.workspace }}/postman/collections/SalesCollection.json"
