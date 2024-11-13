@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "40a58a77-6bde-4fd7-aca2-7ff9e7f531a2",
+		"name": "SalesCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "25897204-40a58a77-6bde-4fd7-aca2-7ff9e7f531a2"
+	},
+	"item": [
+		{
+			"name": "GetAllCustomers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83075184-6d3c-4d5a-8eef-137eb1587337",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "053d1f40-33bf-4908-9230-b0cbaf7eadd3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SalesURL}}/Customers",
+					"host": [
+						"{{SalesURL}}"
+					],
+					"path": [
+						"Customers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
